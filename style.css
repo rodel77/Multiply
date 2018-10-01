@@ -29,6 +29,13 @@ body {
     font-size: 20px;
 }
 
+.sc {
+    color: #b4b4b4;
+    font-family: 'Segoe UI', Arial;
+    position: fixed;
+    bottom: 10px;
+}
+
 .op {
     font-family: 'Segoe UI', Arial;
     font-size: 85px;
