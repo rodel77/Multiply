@@ -1,0 +1,36 @@
+/* @font-face {
+    font-family: "BubbleTime";
+    src: url("Oeuf.ttf");
+} */
+
+body {
+    -webkit-transition: background-color .5s;
+    -moz-transition:    background-color .5s;
+    -o-transition:      background-color .5s;
+    transition:         background-color .5s;
+}
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.score {
+    font-family: BubbleTime, Arial;
+    color: white;
+    font-size: 30px;
+}
+
+.list {
+    font-family: BubbleTime, Arial;
+    color: white;
+    font-size: 20px;
+}
+
+.op {
+    font-family: 'Segoe UI', Arial;
+    font-size: 85px;
+    color: white;
+}

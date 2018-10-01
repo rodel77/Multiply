@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+    var buffer = "";
+    var tables = [];
+    var index = -1;
+    var done = 0;
+    var error = 0;
+
+    for (var i = 2; i < 10; i++) {
+        for (var j = 2; j < 10; j++) {
+            tables.push({
+                a: i,
+                b: j,
+                done: true,
+            });
+        }
+    }
+
+    function newNum(){
+        var remaining = false;
+        for(var i in tables){
+            if(!tables[i].done){
+                remaining = true;
+            }
+        }
+        if(!remaining){
+            for(var i in tables){
+                tables[i].done = false;
+            }
+        }
+
+        while(true){
+            var table = tables[index = Math.floor(Math.random()*tables.length)];
+
+            if(!table.done){
+                table.done = true;
+                document.getElementById("opIn").innerText = table.a+"x"+table.b;
+                break;
+            }
+        }
+
+        updateBuff();
+    }
+
+    function updateBuff(){
+        document.getElementById("num").innerText = buffer;
+        document.getElementById("score").innerText = done+"/"+error;
+    }
+
+    document.addEventListener("DOMContentLoaded", function(e){
+        newNum();
+    });
+
+    document.addEventListener('keypress', function(e){
+        if(e.charCode>=48 && e.charCode<=57){
+            buffer += e.key;
+            updateBuff();
+        }
+
+        if(e.charCode==13){
+            var table = tables[index];
+            if(parseInt(buffer)==table.a*table.b){
+                document.body.style.backgroundColor = "#33984b";
+                buffer = "";
+                done++;
+                newNum();
+                updateBuff();
+            }else{
+                document.body.style.backgroundColor = "#c42430";
+                error++;
+                updateBuff();
+            }
+        }
+    });
+
+    document.addEventListener("keydown", function(e){
+        if(e.keyCode==8){
+            buffer = "";
+            updateBuff();
+        }
+    });
+</script>
+<body style="background-color:black;">
+    <span class="score" id="score"></span>
+
+    <span class="centered op"><span id="opIn"></span> = <span id="num"></span></span>
+</body>
+</html>
